@@ -141,11 +141,17 @@
   <ItemGroup>
     <ClCompile Include="ks-obiekt.cpp" />
     <ClCompile Include="KsiazkaAdresowa.cpp" />
+    <ClCompile Include="MetodyPomocnicze.cpp" />
+    <ClCompile Include="PlikZUzytkownikami.cpp" />
     <ClCompile Include="Uzytkownik.cpp" />
+    <ClCompile Include="UzytkownikMenedzer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KsiazkaAdresowa.h" />
+    <ClInclude Include="MetodyPomocnicze.h" />
+    <ClInclude Include="PlikZUzytkownikami.h" />
     <ClInclude Include="Uzytkownik.h" />
+    <ClInclude Include="UzytkownikMenedzer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
