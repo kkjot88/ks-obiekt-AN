@@ -18,5 +18,19 @@
     <ClCompile Include="ks-obiekt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="KsiazkaAdresowa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Uzytkownik.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="KsiazkaAdresowa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Uzytkownik.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
