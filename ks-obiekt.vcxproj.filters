@@ -24,12 +24,30 @@
     <ClCompile Include="Uzytkownik.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MetodyPomocnicze.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlikZUzytkownikami.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UzytkownikMenedzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KsiazkaAdresowa.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Uzytkownik.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MetodyPomocnicze.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlikZUzytkownikami.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UzytkownikMenedzer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
