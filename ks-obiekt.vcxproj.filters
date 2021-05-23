@@ -33,6 +33,15 @@
     <ClCompile Include="UzytkownikMenedzer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Adresat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdresatMenedzer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlikZAdresatami.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KsiazkaAdresowa.h">
@@ -48,6 +57,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UzytkownikMenedzer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Adresat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AdresatMenedzer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlikZAdresatami.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
