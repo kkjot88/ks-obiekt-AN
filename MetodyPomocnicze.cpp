@@ -18,3 +18,10 @@ string MetodyPomocnicze::konwerjsaIntNaString(int liczba)
     string str = ss.str();
     return str;
 }
+
+string MetodyPomocnicze::wczytajLinie()
+{
+    string wejscie = "";
+    getline(cin, wejscie);
+    return wejscie;
+}
