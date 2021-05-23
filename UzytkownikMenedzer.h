@@ -13,8 +13,7 @@
 using namespace std;
 
 class UzytkownikMenedzer {
-	int idZalogowanegoUzytkownika;
-	int idUsunietegoAdresata;
+	int idZalogowanegoUzytkownika;	
 	vector<Uzytkownik> uzytkownicy;
 
 	Uzytkownik podajDaneNowegoUzytkownika();
@@ -23,6 +22,7 @@ class UzytkownikMenedzer {
 	PlikZUzytkownikami plikZUzytkownikami;
 
 public:	
+	UzytkownikMenedzer(string nazwaPlikuZUzytkownikami);
 	void rejestracjaUzytkownika();
 	void wypiszWszystkichUzytkownikow();
 	void wczytajUzytkownikowZPliku();
