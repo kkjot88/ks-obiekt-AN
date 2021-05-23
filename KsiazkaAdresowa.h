@@ -14,6 +14,7 @@ class KsiazkaAdresowa
 public:
 	KsiazkaAdresowa(string nazwaPlikuZUzytkownikami);
 	void rejestracjaUzytkownika();
+	int logowanieUzytkownika();
 	void wypiszWszystkichUzytkownikow();
 
 };
