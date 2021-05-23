@@ -26,7 +26,8 @@ public:
 	void wczytajUzytkownikowZPliku();
 	void rejestracjaUzytkownika();
 	int logowanieUzytkownika();
-	void zmianaHaslaZalogowanegoUzytkownika();	
+	void zmianaHaslaZalogowanegoUzytkownika();
+	int wylogowanieUzytkownika();
 	void wypiszWszystkichUzytkownikow();		
 };
 

@@ -10,9 +10,6 @@ int main()
     
     int x = ksiazkaAdresowa.logowanieUzytkownika(); 
     cout << x << endl;
-    
-    ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
-    ksiazkaAdresowa.wypiszWszystkichUzytkownikow();    
 
     return 0;
 }

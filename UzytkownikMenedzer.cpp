@@ -7,8 +7,7 @@ UzytkownikMenedzer::UzytkownikMenedzer(string nazwaPlikuZUzytkownikami)
 
 void UzytkownikMenedzer::wczytajUzytkownikowZPliku() {
     uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
-}
-    
+}    
 
 void UzytkownikMenedzer::rejestracjaUzytkownika() {
     Uzytkownik uzytkownik = podajDaneNowegoUzytkownika();
@@ -72,6 +71,11 @@ void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika() {
         }
     }
     plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
+}
+
+int UzytkownikMenedzer::wylogowanieUzytkownika() {
+    idZalogowanegoUzytkownika = 0;
+    return idZalogowanegoUzytkownika;
 }
 
 Uzytkownik UzytkownikMenedzer::podajDaneNowegoUzytkownika() {
