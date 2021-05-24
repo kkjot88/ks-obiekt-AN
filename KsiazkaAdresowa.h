@@ -15,7 +15,7 @@ class KsiazkaAdresowa
 	int idZalogowanegoUzytkownika;
 
 public:
-	KsiazkaAdresowa(string nazwaPlikuZUzytkownikami);
+	KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami);
 
 	int pobierzIdZalogowanegoUzytkownika();
 	void ustawIdZalogowanegoUzytkownika(int noweIdZalogowanegoUzytkownika);

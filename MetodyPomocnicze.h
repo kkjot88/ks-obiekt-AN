@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <algorithm>
+#include <fstream>
+#include <sstream>
+#include <locale>
 
 #include "Adresat.h"
 #include "Uzytkownik.h"
@@ -16,6 +19,8 @@ public:
 	static string konwerjsaIntNaString(int liczba);	
 	static string wczytajLinie();
 	static string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
+	static bool czyPlikJestPusty(fstream& plikTekstowy);
+	static string pobierzLiczbe(string tekst, int pozycjaZnaku);
 };
 
 #endif
