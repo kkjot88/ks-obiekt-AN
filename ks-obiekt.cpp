@@ -8,8 +8,21 @@ int main()
 {
     KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt");         
     
-    int x = ksiazkaAdresowa.logowanieUzytkownika(); 
-    cout << x << endl;
+    ksiazkaAdresowa.logowanieUzytkownika(); 
+    cout << ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika() << endl;
+
+    ksiazkaAdresowa.dodajAdresata();
+    ksiazkaAdresowa.dodajAdresata();
+
+    ksiazkaAdresowa.wylogowanieUzytkownika();
+
+    ksiazkaAdresowa.logowanieUzytkownika();
+    cout << ksiazkaAdresowa.pobierzIdZalogowanegoUzytkownika() << endl;
+
+    ksiazkaAdresowa.dodajAdresata();
+    ksiazkaAdresowa.dodajAdresata();
+
+    ksiazkaAdresowa.wypiszWszystkichAdresatow();
 
     return 0;
 }
