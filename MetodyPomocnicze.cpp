@@ -1,5 +1,3 @@
-#include <sstream>
-
 #include "MetodyPomocnicze.h"
 
 int MetodyPomocnicze::konwersjaStringNaInt(string liczba)
@@ -33,4 +31,23 @@ string MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst
         tekst[0] = toupper(tekst[0]);
     }
     return tekst;
+}
+
+bool MetodyPomocnicze::czyPlikJestPusty(fstream& plikTekstowy) {    
+    plikTekstowy.seekg(0, ios::end);
+    if (plikTekstowy.tellg() == 0)
+        return true;
+    else
+        return false;
+}
+
+string MetodyPomocnicze::pobierzLiczbe(string tekst, int pozycjaZnaku) {
+    string liczba = "";
+    locale loc;    
+    while ((isdigit(tekst[pozycjaZnaku],loc)) == true)
+    {
+        liczba += tekst[pozycjaZnaku];
+        pozycjaZnaku++;
+    }
+    return liczba;
 }

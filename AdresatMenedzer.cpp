@@ -1,5 +1,11 @@
 #include "AdresatMenedzer.h"
 
+AdresatMenedzer::AdresatMenedzer(string nazwaPlikuZAdresatami)
+    :plikZAdresatami(nazwaPlikuZAdresatami)
+{
+    idOstatniegoAdresata = 0;
+}
+
 void AdresatMenedzer::dodajAdresata(int idZalogowanegoUzytkownika) {
     Adresat adresat;
 
@@ -8,7 +14,11 @@ void AdresatMenedzer::dodajAdresata(int idZalogowanegoUzytkownika) {
     adresat = podajDaneNowegoAdresata(idZalogowanegoUzytkownika);
 
     adresaci.push_back(adresat);
-    //dopiszAdresataDoPliku(adresat);
+    plikZAdresatami.dopiszAdresataDoPliku(adresat);
+}
+
+void AdresatMenedzer::wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika) {
+    adresaci = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika, idOstatniegoAdresata);
 }
 
 Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika) {

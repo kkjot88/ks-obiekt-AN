@@ -1,7 +1,7 @@
 #include "PlikZUzytkownikami.h"
 
 PlikZUzytkownikami::PlikZUzytkownikami(string NAZWAPLIKUZUZYTKOWNIKAMI)
-    : nazwaPlikuZUzytkownikami(NAZWAPLIKUZUZYTKOWNIKAMI) {
+    :nazwaPlikuZUzytkownikami(NAZWAPLIKUZUZYTKOWNIKAMI) {
 };
 
 void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {    
@@ -13,7 +13,7 @@ void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
     {
         liniaZDanymiUzytkownika = zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(uzytkownik);
 
-        if (czyPlikJestPusty() == true)
+        if (MetodyPomocnicze::czyPlikJestPusty(plikTekstowy) == true)
         {
             plikTekstowy << liniaZDanymiUzytkownika;
         }
@@ -36,16 +36,6 @@ string PlikZUzytkownikami::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowym
     liniaZDanymiUzytkownika += uzytkownik.pobierzHaslo() + '|';
 
     return liniaZDanymiUzytkownika;
-}
-
-bool PlikZUzytkownikami::czyPlikJestPusty()
-{
-    fstream plikTekstowy;
-    plikTekstowy.seekg(0, ios::end);
-    if (plikTekstowy.tellg() == 0)
-        return true;
-    else
-        return false;
 }
 
 vector<Uzytkownik> PlikZUzytkownikami::wczytajUzytkownikowZPliku() {
