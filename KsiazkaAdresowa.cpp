@@ -3,8 +3,7 @@
 KsiazkaAdresowa::KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami):
 	uzytkownikMenedzer(nazwaPlikuZUzytkownikami),
 	adresatMenedzer(nazwaPlikuZAdresatami) 
-{
-	uzytkownikMenedzer.wczytajUzytkownikowZPliku();
+{	
 	idZalogowanegoUzytkownika = 0;
 }
 

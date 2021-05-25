@@ -22,8 +22,7 @@ class UzytkownikMenedzer {
 	bool czyIstniejeLogin(string login);	
 
 public:	
-	UzytkownikMenedzer(string nazwaPlikuZUzytkownikami);
-	void wczytajUzytkownikowZPliku();
+	UzytkownikMenedzer(string nazwaPlikuZUzytkownikami);	
 	void rejestracjaUzytkownika();
 	int logowanieUzytkownika();
 	void zmianaHaslaZalogowanegoUzytkownika();
