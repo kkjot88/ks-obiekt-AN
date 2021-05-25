@@ -1,7 +1,7 @@
 #include "PlikZUzytkownikami.h"
 
-PlikZUzytkownikami::PlikZUzytkownikami(string NAZWAPLIKUZUZYTKOWNIKAMI)
-    :nazwaPlikuZUzytkownikami(NAZWAPLIKUZUZYTKOWNIKAMI) {
+PlikZUzytkownikami::PlikZUzytkownikami(string nazwaPlikuZUzytkownikami)
+    :NAZWA_PLIKU_Z_UZYTKOWNIKAMI(nazwaPlikuZUzytkownikami) {
 };
 
 void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {    
