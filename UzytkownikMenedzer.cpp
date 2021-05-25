@@ -2,9 +2,9 @@
 
 UzytkownikMenedzer::UzytkownikMenedzer(string nazwaPlikuZUzytkownikami)
     :plikZUzytkownikami(nazwaPlikuZUzytkownikami)
-{
-    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
+{    
     idZalogowanegoUzytkownika = 0;
+    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
 };    
 
 void UzytkownikMenedzer::rejestracjaUzytkownika() {
@@ -54,6 +54,17 @@ int UzytkownikMenedzer::logowanieUzytkownika()
     return 0;
 }
 
+bool UzytkownikMenedzer::czyUzytkownikJestZalogowany() {
+    if (idZalogowanegoUzytkownika > 0)
+        return true;
+    else
+        return false;
+}
+
+int UzytkownikMenedzer::pobierzIdZalogowanegoUzytkownika() {
+    return idZalogowanegoUzytkownika;
+}
+
 void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika() {
     string noweHaslo = "";
     cout << "Podaj nowe haslo: ";
@@ -71,9 +82,8 @@ void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika() {
     plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
 }
 
-int UzytkownikMenedzer::wylogowanieUzytkownika() {
+void UzytkownikMenedzer::wylogowanieUzytkownika() {
     idZalogowanegoUzytkownika = 0;
-    return idZalogowanegoUzytkownika;
 }
 
 Uzytkownik UzytkownikMenedzer::podajDaneNowegoUzytkownika() {

@@ -16,6 +16,14 @@ class Adresat
     string adres;
 
 public:
+    Adresat(int id = 0,
+            int idUzytkownika = 0,
+            string imie = "",
+            string nazwisko = "",
+            string numterTelefonu = "",
+            string email = "",
+            string adres = "");
+
     void ustawId(int noweId);
     void ustawIdUzytkownika(int noweIdUzytkownika);
     void ustawImie(string noweImie);

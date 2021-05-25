@@ -3,12 +3,12 @@
 PlikZAdresatami::PlikZAdresatami(string nazwaPlikuZAdresatami)
     :NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami)
 {
+    idOstatniegoAdresata = 0;
 }
 
-vector<Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika,int& idOstatniegoAdresata) {
+vector<Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika) {
     vector<Adresat> adresaci;
     Adresat adresat;
-    idOstatniegoAdresata = 0;
     string daneJednegoAdresataOddzielonePionowymiKreskami = "";
     string daneOstaniegoAdresataWPliku = "";
     fstream plikTekstowy;
@@ -25,23 +25,22 @@ vector<Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(i
             }
         }
         daneOstaniegoAdresataWPliku = daneJednegoAdresataOddzielonePionowymiKreskami;
-    }
-    else
-        cout << "Nie udalo sie otworzyc pliku i wczytac danych." << endl;
-
-    plikTekstowy.close();
+        plikTekstowy.close();
+    }    
 
     if (daneOstaniegoAdresataWPliku != "")
     {
         idOstatniegoAdresata = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneOstaniegoAdresataWPliku);        
     }
-    else
-        idOstatniegoAdresata = 0;
 
     return adresaci;
 }
 
-void PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat) {
+int PlikZAdresatami::pobierzIdOstatniegoAdresata() {
+    return idOstatniegoAdresata;
+}
+
+bool PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat) {
     string liniaZDanymiAdresata = "";
     fstream plikTekstowy;
     plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::out | ios::app);
@@ -58,13 +57,11 @@ void PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat) {
         {
             plikTekstowy << endl << liniaZDanymiAdresata;
         }
+        idOstatniegoAdresata++;
+        plikTekstowy.close();
+        return true;
     }
-    else
-    {
-        cout << "Nie udalo sie otworzyc pliku i zapisac w nim danych." << endl;
-    }
-    plikTekstowy.close();
-    system("pause");
+    return false;
 }
 
 string PlikZAdresatami::zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat) {

@@ -2,17 +2,14 @@
 
 KsiazkaAdresowa::KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami):
 	uzytkownikMenedzer(nazwaPlikuZUzytkownikami),
-	adresatMenedzer(nazwaPlikuZAdresatami) 
+	NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami)
 {	
-	idZalogowanegoUzytkownika = 0;
+	adresatMenedzer = NULL;
 }
 
-int KsiazkaAdresowa::pobierzIdZalogowanegoUzytkownika() {
-	return idZalogowanegoUzytkownika;
-}
-
-void KsiazkaAdresowa::ustawIdZalogowanegoUzytkownika(int noweIdZalogowanegoUzytkownika) {
-	idZalogowanegoUzytkownika = noweIdZalogowanegoUzytkownika;
+KsiazkaAdresowa::~KsiazkaAdresowa() {
+	delete adresatMenedzer;
+	adresatMenedzer = NULL;
 }
 
 void KsiazkaAdresowa::rejestracjaUzytkownika() {
@@ -21,8 +18,11 @@ void KsiazkaAdresowa::rejestracjaUzytkownika() {
 }
 
 void KsiazkaAdresowa::logowanieUzytkownika() {	
-	idZalogowanegoUzytkownika = uzytkownikMenedzer.logowanieUzytkownika();
-	adresatMenedzer.wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
+	uzytkownikMenedzer.logowanieUzytkownika();
+	if (uzytkownikMenedzer.czyUzytkownikJestZalogowany())
+	{
+		adresatMenedzer = new AdresatMenedzer(NAZWA_PLIKU_Z_ADRESATAMI, uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
+	}
 }
 
 void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
@@ -30,7 +30,9 @@ void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
 }
 
 void KsiazkaAdresowa::wylogowanieUzytkownika() {
-	idZalogowanegoUzytkownika = uzytkownikMenedzer.wylogowanieUzytkownika();
+	uzytkownikMenedzer.wylogowanieUzytkownika();
+	delete adresatMenedzer;
+	adresatMenedzer = NULL;
 }
 
 void KsiazkaAdresowa::wypiszWszystkichUzytkownikow() {
@@ -38,9 +40,15 @@ void KsiazkaAdresowa::wypiszWszystkichUzytkownikow() {
 }
 
 void KsiazkaAdresowa::dodajAdresata() {
-	adresatMenedzer.dodajAdresata(idZalogowanegoUzytkownika);
+	if (uzytkownikMenedzer.czyUzytkownikJestZalogowany()) {
+		adresatMenedzer->dodajAdresata();
+	}
+	else {
+		cout << "Aby dodac adresata, nalezy najpierw sie zalogowac" << endl;
+		system("pause");
+	}
 }
 
-void KsiazkaAdresowa::wypiszWszystkichAdresatow() {
-	adresatMenedzer.wypiszWszystkichAdresatow();
+void KsiazkaAdresowa::wyswietlWszystkichAdresatow() {	
+	adresatMenedzer->wyswietlWszystkichAdresatow();	
 }
