@@ -25,8 +25,10 @@ public:
 	UzytkownikMenedzer(string nazwaPlikuZUzytkownikami);	
 	void rejestracjaUzytkownika();
 	int logowanieUzytkownika();
+	bool czyUzytkownikJestZalogowany();
+	int pobierzIdZalogowanegoUzytkownika();
 	void zmianaHaslaZalogowanegoUzytkownika();
-	int wylogowanieUzytkownika();
+	void wylogowanieUzytkownika();
 
 	void wypiszWszystkichUzytkownikow();		
 };
