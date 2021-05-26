@@ -19,13 +19,14 @@ class AdresatMenedzer {
 
     Adresat podajDaneNowegoAdresata();
     void wyswietlDaneAdresata(Adresat adresat);
+    void wyswietlIloscWyszukanychAdresatow(int iloscAdresatow);
 
 public:
     AdresatMenedzer(string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika);
     void dodajAdresata();
     void wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);    
-    void wyszukajAdresatowPoImieniu();
-    void wyswietlIloscWyszukanychAdresatow(int iloscAdresatow);
+    void wyszukajAdresatowPoImieniu();    
+    void wyszukajAdresatowPoNazwisku();
 
     void wyswietlWszystkichAdresatow();
 };

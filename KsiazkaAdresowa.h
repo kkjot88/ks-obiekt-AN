@@ -26,7 +26,7 @@ public:
 
 	void dodajAdresata();
 	void wyszukajAdresatowPoImieniu();	
-	//wyszukjaPoNazwisku	
+	void wyszukajAdresatowPoNazwisku();		
 	void wyswietlWszystkichAdresatow();
 	//usunAdresata
 	//edytujAdresata
