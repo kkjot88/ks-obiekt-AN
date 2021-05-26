@@ -12,11 +12,12 @@ int main()
 
     ksiazkaAdresowa.wyswietlWszystkichAdresatow();
 
-    ksiazkaAdresowa.wylogowanieUzytkownika();
-
-    ksiazkaAdresowa.logowanieUzytkownika();
-
-    ksiazkaAdresowa.wyswietlWszystkichAdresatow();
+    ksiazkaAdresowa.wyszukajAdresatowPoImieniu();    
+    ksiazkaAdresowa.wyszukajAdresatowPoImieniu();    
+    ksiazkaAdresowa.wyszukajAdresatowPoImieniu();    
+    ksiazkaAdresowa.wyszukajAdresatowPoImieniu();    
+    ksiazkaAdresowa.wyszukajAdresatowPoImieniu();    
+    ksiazkaAdresowa.wyszukajAdresatowPoImieniu();    
 
     return 0;
 }

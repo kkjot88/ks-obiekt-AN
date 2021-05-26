@@ -18,14 +18,20 @@ public:
 	KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami);
 	~KsiazkaAdresowa();
 
+	void wypiszWszystkichUzytkownikow();
+		
+	void logowanieUzytkownika();	
 	void rejestracjaUzytkownika();
-	void logowanieUzytkownika();
-	void zmianaHaslaZalogowanegoUzytkownika();
-	void wylogowanieUzytkownika();
-	void wypiszWszystkichUzytkownikow();	
+	//zamknijprogram - poprostu exit	
 
 	void dodajAdresata();
+	void wyszukajAdresatowPoImieniu();	
+	//wyszukjaPoNazwisku	
 	void wyswietlWszystkichAdresatow();
+	//usunAdresata
+	//edytujAdresata
+	void zmianaHaslaZalogowanegoUzytkownika();
+	void wylogowanieUzytkownika();
 };
 
 #endif
