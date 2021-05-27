@@ -36,7 +36,7 @@ vector<Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(i
     return adresaci;
 }
 
-int PlikZAdresatami::pobierzIdOstatniegoAdresata() {
+int PlikZAdresatami::pobierzIdOstatniegoAdresata() {    
     return idOstatniegoAdresata;
 }
 
@@ -62,6 +62,108 @@ bool PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat) {
         return true;
     }
     return false;
+}
+
+void PlikZAdresatami::usunAdrestaZPliku(int idAdrestaDoUsuniecia) {
+    fstream odczytywanyPlikTekstowy;
+    fstream edytowanyPlikTekstowy;    
+
+    const string NAZWA_ODCZYTYWANEGO_PLIKU_Z_ADRESATAMI = NAZWA_PLIKU_Z_ADRESATAMI;
+    const string NAZWA_EDYTOWANEGO_PLIKU_Z_ADRESATAMI = NAZWA_PLIKU_Z_ADRESATAMI.substr(0, NAZWA_PLIKU_Z_ADRESATAMI.find(".txt")) + "_temp.txt";
+
+    odczytywanyPlikTekstowy.open(NAZWA_ODCZYTYWANEGO_PLIKU_Z_ADRESATAMI, ios::in);
+    if (odczytywanyPlikTekstowy.good() == false) {
+        cout << "error message" << endl;
+        return;
+    }
+    
+    edytowanyPlikTekstowy.open(NAZWA_EDYTOWANEGO_PLIKU_Z_ADRESATAMI, ios::out);
+
+    string aktualnaLinijkaOdczytywanegoPliku = "";
+    string poprzedniaLinijkaOdczytywnaegoPliku = "";
+    int licznikLinijek = 0;
+    int numerUsunietejLinijki = 0; 
+
+    //zabezpieczone przed zostawieniem ostatniej linjki pustej gdyz taka sytuacja psuje dodawanie adresatow.
+    //Do pliku zapisujemy linijke jedna wczesniej niz aktualna po to zeby moc sprawdzac .eof() w obecnej linijce
+    //przed dodaniem jej do nowego pliku. Dzieki temu mozemy kontrolowac dodawanie linijki (<< endl;) i uniknac 
+    //sytuacji gdy usuwany jest adresat znajdujacy sie w ostatniej linijce a w jego miejsce zostaje dodana pusta linijka.
+
+    while (getline(odczytywanyPlikTekstowy, aktualnaLinijkaOdczytywanegoPliku)) {        
+        if (licznikLinijek > 0) {
+            int idAdresataPobraneZPoprzedniejLinijkiOdczytywanegoPliku = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(poprzedniaLinijkaOdczytywnaegoPliku);
+            if (idAdrestaDoUsuniecia != idAdresataPobraneZPoprzedniejLinijkiOdczytywanegoPliku) {
+                edytowanyPlikTekstowy << poprzedniaLinijkaOdczytywnaegoPliku;
+                if (!odczytywanyPlikTekstowy.eof()) {
+                    edytowanyPlikTekstowy << endl;
+                }
+            }
+            else numerUsunietejLinijki = licznikLinijek;
+        }
+        if (!odczytywanyPlikTekstowy.eof()) poprzedniaLinijkaOdczytywnaegoPliku = aktualnaLinijkaOdczytywanegoPliku;
+        if (odczytywanyPlikTekstowy.eof()) {
+            int idAdresataPobraneZAktualnejLinijkiOdczytywanegoPliku = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(aktualnaLinijkaOdczytywanegoPliku);
+            if (numerUsunietejLinijki != licznikLinijek && numerUsunietejLinijki != 0) { //zabezpieczenie przed usuwaniem przedostatniej linijki
+                edytowanyPlikTekstowy << endl;                
+            }                       
+            if (idAdrestaDoUsuniecia != idAdresataPobraneZAktualnejLinijkiOdczytywanegoPliku) {
+                edytowanyPlikTekstowy << aktualnaLinijkaOdczytywanegoPliku;
+            }            
+        }
+        licznikLinijek++;
+    }
+
+    odczytywanyPlikTekstowy.close();
+    edytowanyPlikTekstowy.close();
+
+    usunPlik(NAZWA_ODCZYTYWANEGO_PLIKU_Z_ADRESATAMI);
+    zmienNazwePliku(NAZWA_EDYTOWANEGO_PLIKU_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);
+}
+
+void PlikZAdresatami::zaktualizujDaneWybranegoAdresata(Adresat adresat) {  
+    int idEdytowanegoAdresata = adresat.pobierzId();
+    string liniaZNowymiDanymiAdresata = "";
+    string aktualnaLinijkaOdczytywanegoPliku;
+    fstream odczytywanyPlikTekstowy;
+    fstream edytowanyPlikTekstowy;
+
+    const string NAZWA_ODCZYTYWANEGO_PLIKU_Z_ADRESATAMI = NAZWA_PLIKU_Z_ADRESATAMI;
+    const string NAZWA_EDYTOWANEGO_PLIKU_Z_ADRESATAMI = NAZWA_PLIKU_Z_ADRESATAMI.substr(0, NAZWA_PLIKU_Z_ADRESATAMI.find(".txt")) + "_temp.txt";
+
+    liniaZNowymiDanymiAdresata = zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(adresat);
+
+    odczytywanyPlikTekstowy.open(NAZWA_ODCZYTYWANEGO_PLIKU_Z_ADRESATAMI, ios::in);
+    if (odczytywanyPlikTekstowy.good() == false) {
+        cout << "error message" << endl;
+        return;
+    }
+
+    edytowanyPlikTekstowy.open(NAZWA_EDYTOWANEGO_PLIKU_Z_ADRESATAMI, ios::out);
+
+    while (getline(odczytywanyPlikTekstowy, aktualnaLinijkaOdczytywanegoPliku))
+    {
+        int idAdresataPobraneZAktualnejLinijkiOdczytywanegoPliku = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(aktualnaLinijkaOdczytywanegoPliku);
+        if (idEdytowanegoAdresata == idAdresataPobraneZAktualnejLinijkiOdczytywanegoPliku) {
+            edytowanyPlikTekstowy << liniaZNowymiDanymiAdresata;
+            if (!odczytywanyPlikTekstowy.eof()) {
+                edytowanyPlikTekstowy << endl;
+            }
+        }
+        else {
+            edytowanyPlikTekstowy << aktualnaLinijkaOdczytywanegoPliku;
+            if (!odczytywanyPlikTekstowy.eof()) {
+                edytowanyPlikTekstowy << endl;
+            }
+        }
+    }
+
+    odczytywanyPlikTekstowy.close();
+    edytowanyPlikTekstowy.close();
+
+    usunPlik(NAZWA_ODCZYTYWANEGO_PLIKU_Z_ADRESATAMI);
+    zmienNazwePliku(NAZWA_EDYTOWANEGO_PLIKU_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);
+    
+    cout << endl << "Dane zostaly zaktualizowane." << endl << endl;
 }
 
 string PlikZAdresatami::zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat) {
@@ -133,4 +235,16 @@ int PlikZAdresatami::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(strin
     int pozycjaRozpoczeciaIdAdresata = 0;
     int idAdresata = MetodyPomocnicze::konwersjaStringNaInt(MetodyPomocnicze::pobierzLiczbe(daneJednegoAdresataOddzielonePionowymiKreskami, pozycjaRozpoczeciaIdAdresata));
     return idAdresata;
+}
+
+void PlikZAdresatami::usunPlik(string nazwaPlikuDoUsuniecia) {
+    if (remove(nazwaPlikuDoUsuniecia.c_str()) == 0) {}
+    else
+        cout << "Nie udalo sie usunac pliku " << nazwaPlikuDoUsuniecia << endl;
+}
+
+void PlikZAdresatami::zmienNazwePliku(string staraNazwa, string nowaNazwa) {
+    if (rename(staraNazwa.c_str(), nowaNazwa.c_str()) == 0) {}
+    else
+        cout << "Nazwa pliku nie zostala zmieniona." << staraNazwa << endl;
 }

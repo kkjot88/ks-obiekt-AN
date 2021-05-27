@@ -8,15 +8,13 @@ int main()
 {
     KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt","Adresaci.txt");         
     
-    ksiazkaAdresowa.logowanieUzytkownika();    
+    ksiazkaAdresowa.logowanieUzytkownika(); 
 
     ksiazkaAdresowa.wyswietlWszystkichAdresatow();
 
-    ksiazkaAdresowa.wylogowanieUzytkownika();
+    while (true)
+    ksiazkaAdresowa.usunAdresata();    
 
-    ksiazkaAdresowa.logowanieUzytkownika();
-
-    ksiazkaAdresowa.wyswietlWszystkichAdresatow();
 
     return 0;
 }
