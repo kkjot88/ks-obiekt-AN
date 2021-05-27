@@ -20,8 +20,7 @@ public:
 	static string wczytajLinie();
 	static int wczytajLiczbeCalkowita();
 	static char wczytajZnak();
-	static string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
-	static bool czyPlikJestPusty(fstream& plikTekstowy);
+	static string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);	
 	static string pobierzLiczbe(string tekst, int pozycjaZnaku);	
 };
 
