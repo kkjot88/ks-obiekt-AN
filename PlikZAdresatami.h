@@ -29,6 +29,7 @@ public:
 	int pobierzIdOstatniegoAdresata();
 	bool dopiszAdresataDoPliku(Adresat adresat);
 	void usunAdrestaZPliku(int idAdrestaDoUsuniecia);
+	void zaktualizujDaneWybranegoAdresata(Adresat adresat);
 };
 
 #endif

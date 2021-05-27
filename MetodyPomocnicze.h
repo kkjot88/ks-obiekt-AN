@@ -22,7 +22,7 @@ public:
 	static char wczytajZnak();
 	static string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
 	static bool czyPlikJestPusty(fstream& plikTekstowy);
-	static string pobierzLiczbe(string tekst, int pozycjaZnaku);
+	static string pobierzLiczbe(string tekst, int pozycjaZnaku);	
 };
 
 #endif

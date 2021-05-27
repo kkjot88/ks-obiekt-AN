@@ -10,9 +10,11 @@ int main()
     
     ksiazkaAdresowa.logowanieUzytkownika(); 
 
-    ksiazkaAdresowa.wyswietlWszystkichAdresatow();    
-    
-    ksiazkaAdresowa.dodajAdresata();
+    ksiazkaAdresowa.wyswietlWszystkichAdresatow();
+
+    while (true)
+    ksiazkaAdresowa.usunAdresata();    
+
 
     return 0;
 }

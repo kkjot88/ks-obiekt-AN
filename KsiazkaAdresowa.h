@@ -28,8 +28,8 @@ public:
 	void wyszukajAdresatowPoImieniu();	
 	void wyszukajAdresatowPoNazwisku();		
 	void wyswietlWszystkichAdresatow();
-	void usunAdresata();	
-	//edytujAdresata
+	void usunAdresata();
+	void edytujAdresata();
 	void zmianaHaslaZalogowanegoUzytkownika();
 	void wylogowanieUzytkownika();
 };
