@@ -1,7 +1,7 @@
 #include "PlikZAdresatami.h"
 
 PlikZAdresatami::PlikZAdresatami(string nazwaPlikuZAdresatami)
-    :NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami)
+    :PlikTekstowy(nazwaPlikuZAdresatami)
 {
     idOstatniegoAdresata = 0;
 }
@@ -12,7 +12,7 @@ vector<Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(i
     string daneJednegoAdresataOddzielonePionowymiKreskami = "";
     string daneOstaniegoAdresataWPliku = "";
     fstream plikTekstowy;
-    plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
+    plikTekstowy.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::in);
 
     if (plikTekstowy.good() == true)
     {
@@ -43,13 +43,13 @@ int PlikZAdresatami::pobierzIdOstatniegoAdresata() {
 bool PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat) {
     string liniaZDanymiAdresata = "";
     fstream plikTekstowy;
-    plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::out | ios::app);
+    plikTekstowy.open(PlikTekstowy::pobierzNazwePliku().c_str(), ios::out | ios::app);
 
     if (plikTekstowy.good() == true)
     {
         liniaZDanymiAdresata = zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(adresat);
 
-        if (MetodyPomocnicze::czyPlikJestPusty(plikTekstowy) == true)
+        if (PlikTekstowy::czyPlikJestPusty() == true)
         {
             plikTekstowy << liniaZDanymiAdresata;
         }
@@ -67,6 +67,8 @@ bool PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat) {
 void PlikZAdresatami::usunAdrestaZPliku(int idAdrestaDoUsuniecia) {
     fstream odczytywanyPlikTekstowy;
     fstream edytowanyPlikTekstowy;    
+
+    const string NAZWA_PLIKU_Z_ADRESATAMI = PlikTekstowy::pobierzNazwePliku().c_str();
 
     const string NAZWA_ODCZYTYWANEGO_PLIKU_Z_ADRESATAMI = NAZWA_PLIKU_Z_ADRESATAMI;
     const string NAZWA_EDYTOWANEGO_PLIKU_Z_ADRESATAMI = NAZWA_PLIKU_Z_ADRESATAMI.substr(0, NAZWA_PLIKU_Z_ADRESATAMI.find(".txt")) + "_temp.txt";
@@ -126,6 +128,8 @@ void PlikZAdresatami::zaktualizujDaneWybranegoAdresata(Adresat adresat) {
     string aktualnaLinijkaOdczytywanegoPliku;
     fstream odczytywanyPlikTekstowy;
     fstream edytowanyPlikTekstowy;
+
+    const string NAZWA_PLIKU_Z_ADRESATAMI = PlikTekstowy::pobierzNazwePliku().c_str();
 
     const string NAZWA_ODCZYTYWANEGO_PLIKU_Z_ADRESATAMI = NAZWA_PLIKU_Z_ADRESATAMI;
     const string NAZWA_EDYTOWANEGO_PLIKU_Z_ADRESATAMI = NAZWA_PLIKU_Z_ADRESATAMI.substr(0, NAZWA_PLIKU_Z_ADRESATAMI.find(".txt")) + "_temp.txt";

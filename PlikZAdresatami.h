@@ -9,11 +9,11 @@
 
 #include "Adresat.h"
 #include "MetodyPomocnicze.h"
+#include "PlikTekstowy.h"
 
 using namespace std;
 
-class PlikZAdresatami {
-	const string NAZWA_PLIKU_Z_ADRESATAMI;
+class PlikZAdresatami :public PlikTekstowy {	
 	int idOstatniegoAdresata;
 
 	string zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat);

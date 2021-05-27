@@ -144,6 +144,7 @@
     <ClCompile Include="ks-obiekt.cpp" />
     <ClCompile Include="KsiazkaAdresowa.cpp" />
     <ClCompile Include="MetodyPomocnicze.cpp" />
+    <ClCompile Include="PlikTekstowy.cpp" />
     <ClCompile Include="PlikZAdresatami.cpp" />
     <ClCompile Include="PlikZUzytkownikami.cpp" />
     <ClCompile Include="Uzytkownik.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="AdresatMenedzer.h" />
     <ClInclude Include="KsiazkaAdresowa.h" />
     <ClInclude Include="MetodyPomocnicze.h" />
+    <ClInclude Include="PlikTekstowy.h" />
     <ClInclude Include="PlikZAdresatami.h" />
     <ClInclude Include="PlikZUzytkownikami.h" />
     <ClInclude Include="Uzytkownik.h" />
