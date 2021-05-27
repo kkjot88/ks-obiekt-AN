@@ -36,7 +36,7 @@ vector<Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(i
     return adresaci;
 }
 
-int PlikZAdresatami::pobierzIdOstatniegoAdresata() {
+int PlikZAdresatami::pobierzIdOstatniegoAdresata() {    
     return idOstatniegoAdresata;
 }
 
@@ -62,6 +62,38 @@ bool PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat) {
         return true;
     }
     return false;
+}
+
+void PlikZAdresatami::usunAdrestaZPliku(int idAdrestaDoUsuniecia) {
+    fstream odczytywanyPlikTekstowy;
+    fstream nowyPlikTekstowy;
+    string aktualnaLinijkaOdczytywanegoPliku;
+
+    const string NAZWA_ODCZYTYWANEGO_PLIKU_Z_ADRESATAMI = NAZWA_PLIKU_Z_ADRESATAMI;
+    const string NAZWA_NOWEGO_PLIKU_Z_ADRESATAMI = NAZWA_PLIKU_Z_ADRESATAMI.substr(0, NAZWA_PLIKU_Z_ADRESATAMI.find(".txt")) + "_temp.txt";
+
+    odczytywanyPlikTekstowy.open(NAZWA_ODCZYTYWANEGO_PLIKU_Z_ADRESATAMI, ios::in);
+    if (odczytywanyPlikTekstowy.good() == false) {
+        cout << "error message" << endl;
+        return;
+    }
+    
+    nowyPlikTekstowy.open(NAZWA_NOWEGO_PLIKU_Z_ADRESATAMI, ios::out); 
+
+    while (getline(odczytywanyPlikTekstowy, aktualnaLinijkaOdczytywanegoPliku))
+    {        
+        int idAdresataPobraneZAktualnejLinijkiOdczytywanegoPliku = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(aktualnaLinijkaOdczytywanegoPliku);
+        if (idAdrestaDoUsuniecia != idAdresataPobraneZAktualnejLinijkiOdczytywanegoPliku)
+        {
+            nowyPlikTekstowy << aktualnaLinijkaOdczytywanegoPliku << endl;
+        }
+    }
+
+    odczytywanyPlikTekstowy.close();
+    nowyPlikTekstowy.close();
+
+    usunPlik(NAZWA_ODCZYTYWANEGO_PLIKU_Z_ADRESATAMI);
+    zmienNazwePliku(NAZWA_NOWEGO_PLIKU_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);
 }
 
 string PlikZAdresatami::zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat) {
@@ -133,4 +165,16 @@ int PlikZAdresatami::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(strin
     int pozycjaRozpoczeciaIdAdresata = 0;
     int idAdresata = MetodyPomocnicze::konwersjaStringNaInt(MetodyPomocnicze::pobierzLiczbe(daneJednegoAdresataOddzielonePionowymiKreskami, pozycjaRozpoczeciaIdAdresata));
     return idAdresata;
+}
+
+void PlikZAdresatami::usunPlik(string nazwaPlikuDoUsuniecia) {
+    if (remove(nazwaPlikuDoUsuniecia.c_str()) == 0) {}
+    else
+        cout << "Nie udalo sie usunac pliku " << nazwaPlikuDoUsuniecia << endl;
+}
+
+void PlikZAdresatami::zmienNazwePliku(string staraNazwa, string nowaNazwa) {
+    if (rename(staraNazwa.c_str(), nowaNazwa.c_str()) == 0) {}
+    else
+        cout << "Nazwa pliku nie zostala zmieniona." << staraNazwa << endl;
 }

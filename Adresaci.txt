@@ -1,10 +1,12 @@
-1|1|Artur|Nowak|333 222 111|artur@nowak.pl|ul. Wesola 3a; 33-300 Krakow|
-2|1|Artur1|Nowak1|333 222 111|artur@nowak.pl|ul. Wesola 3a; 33-300 Krakow|
-3|1|Artur2|Nowak2|333 222 111|artur@nowak.pl|ul. Wesola 3a; 33-300 Krakow|
-4|1|Artur3|Nowak3|333 222 111|artur@nowak.pl|ul. Wesola 3a; 33-300 Krakow|
-5|1|Artur4|Nowak4|333 222 111|artur@nowak.pl|ul. Wesola 3a; 33-300 Krakow|
 6|2|Bartek|Glowacki|333 222 111|bartek@glowacki.pl|ul. Sloneczna 61; 33-330 Krakow|
 7|2|Bartek1|Glowacki1|333 222 111|bartek@glowacki.pl|ul. Sloneczna 61; 33-330 Krakow|
 8|2|Bartek2|Glowacki2|333 222 111|bartek@glowacki.pl|ul. Sloneczna 61; 33-330 Krakow|
-9|2|Bartek3|Glowacki4|333 222 111|bartek@glowacki.pl|ul. Sloneczna 61; 33-330 Krakow|
 10|2|Bartek4|Glowacki4|333 222 111|bartek@glowacki.pl|ul. Sloneczna 61; 33-330 Krakow|
+11|1|K|K|k|k|k|
+12|1|G|G|g|g|g|
+14|2|G|G|g|g|g|
+15|1|U|U|u|u|u|
+16|2|J|J|j|j|j|
+17|1|H|H|h|h|h|
+18|1|D|D|d|d|d|
+19|2|T|T|t|t|t|
