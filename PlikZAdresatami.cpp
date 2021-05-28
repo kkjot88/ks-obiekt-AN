@@ -85,6 +85,7 @@ void PlikZAdresatami::usunAdrestaZPliku(int idAdrestaDoUsuniecia) {
     string poprzedniaLinijkaOdczytywnaegoPliku = "";
     int licznikLinijek = 0;
     int numerUsunietejLinijki = 0; 
+    int idAdresataPobraneZPoprzedniejLinijkiOdczytywanegoPliku = 0;
 
     //zabezpieczone przed zostawieniem ostatniej linjki pustej gdyz taka sytuacja psuje dodawanie adresatow.
     //Do pliku zapisujemy linijke jedna wczesniej niz aktualna po to zeby moc sprawdzac .eof() w obecnej linijce
@@ -93,7 +94,7 @@ void PlikZAdresatami::usunAdrestaZPliku(int idAdrestaDoUsuniecia) {
 
     while (getline(odczytywanyPlikTekstowy, aktualnaLinijkaOdczytywanegoPliku)) {        
         if (licznikLinijek > 0) {
-            int idAdresataPobraneZPoprzedniejLinijkiOdczytywanegoPliku = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(poprzedniaLinijkaOdczytywnaegoPliku);
+            idAdresataPobraneZPoprzedniejLinijkiOdczytywanegoPliku = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(poprzedniaLinijkaOdczytywnaegoPliku);
             if (idAdrestaDoUsuniecia != idAdresataPobraneZPoprzedniejLinijkiOdczytywanegoPliku) {
                 edytowanyPlikTekstowy << poprzedniaLinijkaOdczytywnaegoPliku;
                 if (!odczytywanyPlikTekstowy.eof()) {
@@ -110,7 +111,11 @@ void PlikZAdresatami::usunAdrestaZPliku(int idAdrestaDoUsuniecia) {
             }                       
             if (idAdrestaDoUsuniecia != idAdresataPobraneZAktualnejLinijkiOdczytywanegoPliku) {
                 edytowanyPlikTekstowy << aktualnaLinijkaOdczytywanegoPliku;
+                idOstatniegoAdresata = idAdresataPobraneZAktualnejLinijkiOdczytywanegoPliku;
             }            
+            else {
+                idOstatniegoAdresata = idAdresataPobraneZPoprzedniejLinijkiOdczytywanegoPliku;
+            }
         }     
         
         licznikLinijek++;
@@ -120,24 +125,7 @@ void PlikZAdresatami::usunAdrestaZPliku(int idAdrestaDoUsuniecia) {
     edytowanyPlikTekstowy.close();
 
     usunPlik(NAZWA_ODCZYTYWANEGO_PLIKU_Z_ADRESATAMI);
-    zmienNazwePliku(NAZWA_EDYTOWANEGO_PLIKU_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);
-
-    odczytywanyPlikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI, ios::in);
-    if (odczytywanyPlikTekstowy.good() == false) {
-        cout << "error message2" << endl;
-        return;
-    }
-
-    while(getline(odczytywanyPlikTekstowy, aktualnaLinijkaOdczytywanegoPliku)) {        
-    }
-    string daneOstaniegoAdresataWPliku = aktualnaLinijkaOdczytywanegoPliku;
-
-    if (daneOstaniegoAdresataWPliku != "")
-    {
-        idOstatniegoAdresata = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneOstaniegoAdresataWPliku);
-    }
-
-    odczytywanyPlikTekstowy.close();
+    zmienNazwePliku(NAZWA_EDYTOWANEGO_PLIKU_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);    
 }
 
 void PlikZAdresatami::zaktualizujDaneWybranegoAdresata(Adresat adresat) {  
