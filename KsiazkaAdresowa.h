@@ -20,10 +20,13 @@ public:
 
 	void wypiszWszystkichUzytkownikow();
 		
+	char wybierzOpcjeZMenuGlownego();
 	void logowanieUzytkownika();	
 	void rejestracjaUzytkownika();
+	bool czyUzytkownikJestZalogowany();
 	//zamknijprogram - poprostu exit	
 
+	char wybierzOpcjeZMenuUzytkownika();
 	void dodajAdresata();
 	void wyszukajAdresatowPoImieniu();	
 	void wyszukajAdresatowPoNazwisku();		

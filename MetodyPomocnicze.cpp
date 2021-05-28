@@ -45,7 +45,7 @@ char MetodyPomocnicze::wczytajZnak() {
     char znak = { 0 };
 
     while (true)
-    {
+    {                
         getline(cin, wejscie);
 
         if (wejscie.length() == 1)

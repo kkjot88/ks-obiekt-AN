@@ -110,7 +110,7 @@ void AdresatMenedzer::usunAdresata() {
             {  
                 plikZAdresatami.usunAdrestaZPliku(itr->pobierzId());
                 adresaci.erase(itr);
-                cout << endl << endl << "Szukany adresat zostal USUNIETY" << endl << endl;
+                cout << endl << "Szukany adresat zostal USUNIETY" << endl << endl;
                 system("pause");
                 return;                
             }
