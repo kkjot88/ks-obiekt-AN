@@ -27,7 +27,7 @@ vector<Adresat> PlikZAdresatami::wczytajAdresatowZalogowanegoUzytkownikaZPliku(i
         daneOstaniegoAdresataWPliku = daneJednegoAdresataOddzielonePionowymiKreskami;
         plikTekstowy.close();
     }    
-
+    
     if (daneOstaniegoAdresataWPliku != "")
     {
         idOstatniegoAdresata = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneOstaniegoAdresataWPliku);        
@@ -104,14 +104,15 @@ void PlikZAdresatami::usunAdrestaZPliku(int idAdrestaDoUsuniecia) {
         }
         if (!odczytywanyPlikTekstowy.eof()) poprzedniaLinijkaOdczytywnaegoPliku = aktualnaLinijkaOdczytywanegoPliku;
         if (odczytywanyPlikTekstowy.eof()) {
-            int idAdresataPobraneZAktualnejLinijkiOdczytywanegoPliku = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(aktualnaLinijkaOdczytywanegoPliku);
+            int idAdresataPobraneZAktualnejLinijkiOdczytywanegoPliku = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(aktualnaLinijkaOdczytywanegoPliku);            
             if (numerUsunietejLinijki != licznikLinijek && numerUsunietejLinijki != 0) { //zabezpieczenie przed usuwaniem przedostatniej linijki
                 edytowanyPlikTekstowy << endl;                
             }                       
             if (idAdrestaDoUsuniecia != idAdresataPobraneZAktualnejLinijkiOdczytywanegoPliku) {
                 edytowanyPlikTekstowy << aktualnaLinijkaOdczytywanegoPliku;
             }            
-        }
+        }     
+        
         licznikLinijek++;
     }
 
@@ -120,6 +121,23 @@ void PlikZAdresatami::usunAdrestaZPliku(int idAdrestaDoUsuniecia) {
 
     usunPlik(NAZWA_ODCZYTYWANEGO_PLIKU_Z_ADRESATAMI);
     zmienNazwePliku(NAZWA_EDYTOWANEGO_PLIKU_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);
+
+    odczytywanyPlikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI, ios::in);
+    if (odczytywanyPlikTekstowy.good() == false) {
+        cout << "error message2" << endl;
+        return;
+    }
+
+    while(getline(odczytywanyPlikTekstowy, aktualnaLinijkaOdczytywanegoPliku)) {        
+    }
+    string daneOstaniegoAdresataWPliku = aktualnaLinijkaOdczytywanegoPliku;
+
+    if (daneOstaniegoAdresataWPliku != "")
+    {
+        idOstatniegoAdresata = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneOstaniegoAdresataWPliku);
+    }
+
+    odczytywanyPlikTekstowy.close();
 }
 
 void PlikZAdresatami::zaktualizujDaneWybranegoAdresata(Adresat adresat) {  
