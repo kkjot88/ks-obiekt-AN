@@ -94,14 +94,14 @@ Uzytkownik UzytkownikMenedzer::podajDaneNowegoUzytkownika() {
     string login;
     do
     {
-        cout << "Podaj login: ";
-        cin >> login;
+        cout << "Podaj login: ";        
+        getline(cin, login);
         uzytkownik.ustawLogin(login);
     }     while (czyIstniejeLogin(uzytkownik.pobierzLogin()) == true);
 
     string haslo;
-    cout << "Podaj haslo: ";
-    cin >> haslo;
+    cout << "Podaj haslo: ";    
+    getline(cin, haslo);
     uzytkownik.ustawHaslo(haslo);
 
     return uzytkownik;
@@ -121,7 +121,6 @@ bool UzytkownikMenedzer::czyIstniejeLogin(string login)
             cout << endl << "Istnieje uzytkownik o takim loginie." << endl;
             return true;
         }
-
     }
     return false;
 }

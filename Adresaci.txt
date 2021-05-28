@@ -1,5 +1,4 @@
 2|2|Bartek|Glowacki|333 222 111|bartek@glowacki.pl|ul. Sloneczna 61; 33-330 Krakow|
-3|1|Bartek|Glowacki|333 222 111|bartek@glowacki.pl|ul. Sloneczna 61; 33-330 Krakow|
-4|2|Bartek|Glowacki|333 222 111|bartek@glowacki.pl|ul. Sloneczna 61; 33-330 Krakow|
-6|2|Bartek|Glowacki|333 222 111|bartek@glowacki.pl|ul. Sloneczna 61; 33-330 Krakow|
+6|2|Niebartek|Glowacki|333 222 111|bartek@glowacki.pl|ul. Sloneczna 61; 33-330 Krakow|
 8|2|Bartek|Glowacki|333 222 111|bartek@glowacki.pl|ul. Sloneczna 61; 33-330 Krakow|
+9|1|Ka|Jot|666|@mail|inny|
